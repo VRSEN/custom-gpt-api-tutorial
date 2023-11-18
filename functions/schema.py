@@ -45,8 +45,10 @@ if __name__ == '__main__':
     import json
 
     openai_schema = GA4QueryParams.openai_schema
-    defs = openai_schema['parameters']['$defs']
-    del openai_schema['parameters']['$defs']
+    defs = {}
+    if '$defs' in openai_schema['parameters']:
+        defs = openai_schema['parameters']['$defs']
+        del openai_schema['parameters']['$defs']
     schema = {
         "openapi": "3.1.0",
         "info": {
